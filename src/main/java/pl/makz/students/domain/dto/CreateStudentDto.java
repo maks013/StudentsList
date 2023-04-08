@@ -11,15 +11,4 @@ public class CreateStudentDto implements Serializable {
     private String email;
     private int idNumber;
     private String major;
-
-    @Override
-    public String toString() {
-        return "CreateStudentDto{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", idNumber=" + idNumber +
-                ", major='" + major + '\'' +
-                '}';
-    }
 }

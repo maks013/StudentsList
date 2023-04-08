@@ -12,16 +12,4 @@ public class UpdateStudentDto implements Serializable {
     private String email;
     private int idNumber;
     private String major;
-
-    @Override
-    public String toString() {
-        return "UpdateStudentDto{" +
-                "studentId=" + studentId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", idNumber=" + idNumber +
-                ", major='" + major + '\'' +
-                '}';
-    }
 }

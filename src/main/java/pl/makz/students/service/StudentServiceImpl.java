@@ -40,11 +40,13 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public void deleteStudent(Long studentId) {
-
+        studentRepository.deleteById(studentId);
     }
 
     @Override
     public void updateStudent(Long studentId, UpdateStudentDto updateStudentDto) {
-
+        Student student = studentRepository.findOneByStudentId(studentId);
+        studentMapper.mapToUpdate(student,updateStudentDto);
+        studentRepository.save(student);
     }
 }

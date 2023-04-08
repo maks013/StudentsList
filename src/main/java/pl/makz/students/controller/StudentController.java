@@ -1,10 +1,12 @@
 package pl.makz.students.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.makz.students.domain.dto.CreateStudentDto;
 import pl.makz.students.domain.dto.StudentDto;
+import pl.makz.students.domain.dto.UpdateStudentDto;
 import pl.makz.students.service.StudentService;
 
 import java.util.List;
@@ -32,4 +34,21 @@ public class StudentController {
         studentService.createStudent(createStudentDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @CrossOrigin
+    @DeleteMapping("/delete/{studentId}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long studentId){
+        studentService.deleteStudent(studentId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PutMapping("/update/{studentId}")
+    public ResponseEntity<Void> updateStudent(@PathVariable Long studentId,
+                                              @RequestBody UpdateStudentDto updateStudentDto){
+        studentService.updateStudent(studentId,updateStudentDto);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

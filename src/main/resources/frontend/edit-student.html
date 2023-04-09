@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista studentów - edytowanie</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1 class="header-title">Edytuj dane studenta</h1>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="view-students.html">Lista studentów</a></li>
+                <li><a href="add-student.html">Dodaj studenta</a></li>
+                <li><a href="edit-student.html">Edytuj dane studenta</a></li>
+                <li><a href="delete-student.html">Usuń studenta</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<form action="/updateStudent" method="post" class="centered-form">
+
+    <label>ID studenta:</label>
+    <input type="text" id="studentId"><br>
+
+    <label>Imię:</label>
+    <input type="text" id="firstName"><br>
+
+    <label>Nazwisko:</label>
+    <input type="text" id="lastName"><br>
+
+    <label>Email:</label>
+    <input type="email" id="email"><br>
+
+    <label>Numer indeksu:</label>
+    <input type="text" id="idNumber"><br>
+
+    <label>Kierunek:</label>
+    <input type="text" id="major"><br>
+
+    <input type="submit" value="Zmień">
+</form>
+<script>
+    const form = document.querySelector('.centered-form');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const studentId = document.querySelector('#studentId').value;
+        const firstName = document.querySelector('#firstName').value;
+        const lastName = document.querySelector('#lastName').value;
+        const email = document.querySelector('#email').value;
+        const idNumber = document.querySelector('#idNumber').value;
+        const major = document.querySelector('#major').value;
+
+        const data = {
+            firstName,
+            lastName,
+            email,
+            idNumber,
+            major
+        };
+
+        fetch(`http://localhost:8080/api/students/update/${studentId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Dane studenta zostały zaktualizowane!');
+                    window.location.href = 'view-students.html';
+                } else {
+                    alert('Wystąpił błąd. Spróbuj ponownie później.');
+                }
+            })
+            .catch(error => {
+                alert('Wystąpił błąd. Spróbuj ponownie później.');
+                console.error(error);
+            });
+    });
+</script>
+</body>
+</html>

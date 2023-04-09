@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista studentów - dodawanie</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1 class="header-title">Dodaj studenta</h1>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="view-students.html">Lista studentów</a></li>
+                <li><a href="add-student.html">Dodaj studenta</a></li>
+                <li><a href="edit-student.html">Edytuj dane studenta</a></li>
+                <li><a href="delete-student.html">Usuń studenta</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<form method="post" class="centered-form">
+
+    <label>Imię:</label>
+    <input type="text" id="firstName"><br>
+
+    <label>Nazwisko:</label>
+    <input type="text" id="lastName"><br>
+
+    <label>Email:</label>
+    <input type="email" id="email"><br>
+
+    <label>Numer indeksu:</label>
+    <input type="text" id="idNumber"><br>
+
+    <label>Kierunek:</label>
+    <input type="text" id="major"><br>
+
+    <input type="submit" value="Dodaj">
+</form>
+<script>
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const firstName = form.elements.firstName.value;
+        const lastName = form.elements.lastName.value;
+        const email = form.elements.email.value;
+        const idNumber = form.elements.idNumber.value;
+        const major = form.elements.major.value;
+
+        const data = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            idNumber: idNumber,
+            major: major
+        };
+
+        const response = await fetch('http://localhost:8080/api/students/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            alert('Student został dodany do bazy danych!');
+            form.reset();
+        } else {
+            alert('Wystąpił problem przy dodawaniu studenta!');
+        }
+    });
+</script>
+</body>
+</html>

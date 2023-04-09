@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .header-title {
+    font-size: 2.5rem;
+    margin: 0;
+  }
+  
+  .header-nav {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+  }
+  
+  .header-nav li {
+    margin-left: 1.5rem;
+  }
+  
+  .header-nav li:first-child {
+    margin-left: 0;
+  }
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.students-table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px;
+}
+
+.students-table th,
+.students-table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.students-table th {
+    background-color: #333;
+    color: #fff;
+}
+
+form {
+    display: inline-block;
+    width: 300px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin: 0 auto;
+}
+  
+form label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+form input[type="text"],
+form input[type="email"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+form input[type="submit"] {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 10px;
+}
+  
+form input[type="submit"]:hover {
+    background-color: #333;
+}
+
+.centered-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista studentów</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+<header>
+    <div class="header-container">
+        <h1 class="header-title">Lista studentów</h1>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="view-students.html">Lista studentów</a></li>
+                <li><a href="add-student.html">Dodaj studenta</a></li>
+                <li><a href="edit-student.html">Edytuj dane studenta</a></li>
+                <li><a href="delete-student.html">Usuń studenta</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <table class="students-table" id="studentsTable">
+            <thead>
+            <tr>
+                <th>ID studenta</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Email</th>
+                <th>Numer indeksu</th>
+                <th>Kierunek</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <script>
+            var tableRef = document.getElementById("studentsTable").getElementsByTagName('tbody')[0];
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:8080/api/students");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+
+                    var studentsData = JSON.parse(xhr.responseText);
+
+                    studentsData.forEach(function (student) {
+
+                        var newRow = tableRef.insertRow();
+
+                        var studentIdCell = newRow.insertCell();
+                        var firstNameCell = newRow.insertCell();
+                        var lastNameCell = newRow.insertCell();
+                        var emailCell = newRow.insertCell();
+                        var idNumberCell = newRow.insertCell();
+                        var majorCell = newRow.insertCell();
+
+                        studentIdCell.innerHTML = student.studentId;
+                        firstNameCell.innerHTML = student.firstName;
+                        lastNameCell.innerHTML = student.lastName;
+                        emailCell.innerHTML = student.email;
+                        idNumberCell.innerHTML = student.idNumber;
+                        majorCell.innerHTML = student.major;
+                    });
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.send();
+        </script>
+    </div>
+</main>
+</body>
+</html>

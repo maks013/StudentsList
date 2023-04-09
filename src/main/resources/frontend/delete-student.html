@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista studentów - usuwanie</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <h1 class="header-title">Usuń studenta z listy</h1>
+        <nav>
+            <ul class="header-nav">
+                <li><a href="view-students.html">Lista studentów</a></li>
+                <li><a href="add-student.html">Dodaj studenta</a></li>
+                <li><a href="edit-student.html">Edytuj dane studenta</a></li>
+                <li><a href="delete-student.html">Usuń studenta</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<form onsubmit="deleteStudent(); return false;" class="centered-form">
+    <label>Id studenta:</label>
+    <input type="text" id="studentId"><br>
+
+    <input type="submit" value="Usuń">
+</form>
+<script>
+    function deleteStudent() {
+        var studentId = document.getElementById("studentId").value;
+
+        fetch('http://localhost:8080/api/students/delete/' + studentId, {
+            method: 'DELETE'
+        }).then(function(response) {
+            if (response.ok) {
+                alert('Student o indeksie ' + studentId + ' został usunięty.');
+            } else {
+                alert('Wystąpił błąd podczas usuwania studenta.');
+            }
+        }).catch(function(error) {
+            alert('Wystąpił błąd podczas usuwania studenta: ' + error.message);
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -19,7 +19,7 @@ public class StudentMapper {
         return student;
     }
 
-    public Student mapToUpdate(Student student, UpdateStudentDto updateStudentDto) {
+    public void mapToUpdate(Student student, UpdateStudentDto updateStudentDto) {
         student.setFirstName(updateStudentDto.getFirstName().isEmpty() ?
                 student.getFirstName() : updateStudentDto.getFirstName());
         student.setLastName(updateStudentDto.getLastName().isEmpty() ?
@@ -30,8 +30,6 @@ public class StudentMapper {
                 student.getIdNumber() : updateStudentDto.getIdNumber());
         student.setMajor(updateStudentDto.getMajor().isEmpty() ?
                 student.getMajor() : updateStudentDto.getMajor());
-
-        return student;
     }
 
 }
